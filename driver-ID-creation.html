@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver-ID-Creation</title>
+    <style>
+        body {
+            width: 99vw;
+            height: 97vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(194, 53, 9, 0.747));
+            background-size: cover;
+            background-position: center;
+        }
+         
+        .sub-title {
+            text-align: center;
+            color: whitesmoke;
+            background: rgba(241, 52, 4, 0.925);
+            border-radius: 10px;
+            font-size: 40px;
+            width: fit-content;
+            padding-bottom: 5px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .main-box {
+            background-color: azure;
+            padding: 40px 130px;
+            margin-left: -6px;
+            border-radius: 10px;
+            margin-top: %;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Shadow Effect */
+        }
+
+        .list-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .list-items .mb-3 {
+            color: whitesmoke;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+            width: 400px;
+            height: 45px;
+            background: rgba(241, 52, 4, 0.925);
+            padding: 5px 5px;
+            display: flex;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .list-items .mb-3:hover {
+            background: rgba(200, 40, 4, 0.925);
+            transform: scale(1.03);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-control {
+            width: 600px;
+            height: 40px;
+        }
+
+        .button {
+            color: whitesmoke;
+            background: rgba(241, 52, 4, 0.925);
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+            width: 130px;
+            height: 40px;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: rgba(200, 40, 4, 0.925);
+            transform: scale(1.05);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #exampleInput {
+            font-size: 65%;
+        }  
+
+        .title {
+            text-align: center;
+            color: red;
+            font-size: 25px;
+            width: fit-content;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .logout a {
+            color: red;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+         
+        .logout a:hover {
+            background: oldlace;
+            transform: scale(1.05);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="sub-title">Create Driver ID</h1>
+    <div class="main-box">
+        <div class="list-items">
+            <form id="driverForm">
+                <h2 class="title">Driver ID</h2>
+                <div class="mb-3">
+                    <input class="form-control form-control-lg" type="text" id="driverId" aria-label=".form-control-lg example" required>
+                </div>
+                <h2 class="title">Password</h2>
+                <div class="mb-3">
+                  <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="button">Register</button>
+            </form>
+            <div class="logout">
+                <a href="home.html">Log Out</a>
+            </div>
+        </div>
+    </div> 
+
+    <script>
+        const driverForm = document.getElementById('driverForm');
+    
+        driverForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+    
+            const driverId = document.getElementById('driverId').value.trim();
+            const password = document.getElementById('password').value.trim();
+    
+            if (driverId && password) {
+                // Get existing data from localStorage
+                let drivers = JSON.parse(localStorage.getItem("drivers")) || [];
+    
+                // Check if ID already exists
+                const exists = drivers.some(driver => driver.driverId === driverId);
+                if (exists) {
+                    alert("Driver ID already exists. Please choose another one.");
+                    return;
+                }
+    
+                // Add new driver and save back to localStorage
+                drivers.push({ driverId, password });
+                localStorage.setItem("drivers", JSON.stringify(drivers));
+    
+                alert("Driver registered successfully!");
+                document.getElementById('driverForm').reset();
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+    </script>
+    
+</body>
+</html>

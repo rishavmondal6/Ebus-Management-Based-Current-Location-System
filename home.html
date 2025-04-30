@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebus Management</title>
+    <style>
+        body {
+            width: 99vw;
+            height: 97vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: url(Bus.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .sub-title {
+            text-align: center;
+            color: whitesmoke;
+            background: rgba(241, 52, 4, 0.925);
+            border-radius: 10px;
+            font-size: 40px;
+            width: fit-content;
+            padding-bottom: 5px;
+            position: relative;
+        }
+
+        .main-box {
+            background-color: azure;
+            padding: 50px 50px;
+            margin-left: -6px;
+            border-radius: 10px;
+            margin-top: 3%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Shadow Effect */
+        }
+
+        .list-items nav ul a {
+            color: whitesmoke;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+            width: 400px;
+            height: 50px;
+            margin-right: 35px;
+            background: rgba(241, 52, 4, 0.925);
+            border-radius: 10%;
+            margin-top: 10px;
+            padding: 5px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease-in-out; /* Smooth Transition */
+        }
+
+        .list-items nav ul a:hover {
+            background: rgba(200, 40, 4, 0.925); /* Darker Red on Hover */
+            transform: scale(1.05); /* Slight Scaling Effect */
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Button Shadow */
+        }
+    </style>
+</head>
+<body>
+    <h1 class="sub-title">Ebus Management Based Current Location System</h1>
+    <div class="main-box">
+        <div class="list-items">
+           <nav>
+               <ul>
+                  <a href="admin.html">Admin Login</a>
+                  <a href="driver.html">Driver Login</a>
+                  <a href="user.html">User</a>
+               </ul>
+           </nav>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <style>
+        body {
+            width: 99vw;
+            height: 97vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(194, 53, 9, 0.747));
+            background-size: cover;
+            background-position: center;
+        }
+         
+        .sub-title {
+            text-align: center;
+            color: whitesmoke;
+            background: rgba(241, 52, 4, 0.925);
+            border-radius: 10px;
+            font-size: 40px;
+            width: fit-content;
+            padding-bottom: 5px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .main-box {
+            background-color: azure;
+            padding: 40px 130px;
+            margin-left: -6px;
+            border-radius: 10px;
+            margin-top: %;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Shadow Effect */
+        }
+
+        .list-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .list-items .mb-3 {
+            color: whitesmoke;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+            width: 400px;
+            height: 45px;
+            background: rgba(241, 52, 4, 0.925);
+            padding: 5px 5px;
+            display: flex;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .list-items .mb-3:hover {
+            background: rgba(200, 40, 4, 0.925);
+            transform: scale(1.03);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-control {
+            width: 600px;
+            height: 40px;
+        }
+
+        .button {
+            color: whitesmoke;
+            background: rgba(241, 52, 4, 0.925);
+            font-size: 27px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-left: 37%;
+            width: 110px;
+            height: 40px;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .button:hover {
+            background: rgba(200, 40, 4, 0.925);
+            transform: scale(1.05);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #exampleInput {
+            font-size: 65%;
+        }  
+
+        .title {
+            text-align: center;
+            color: red;
+            font-size: 25px;
+            width: fit-content;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .sign_up {
+            position: absolute;
+            bottom: 95px;
+            left: 49.8%;
+            transform: translateX(-50%);
+        }
+
+        .sign_up a {
+            color: red;
+            font-size: 25px;
+            font-weight: bolder;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+         
+        .sign_up a:hover {
+            background: oldlace;
+            transform: scale(1.05);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .home{
+            position: absolute;
+            bottom: 55px;
+            left: 49.7%;
+            transform: translateX(-50%);
+        }
+        .home a {
+            color: red;
+            font-size: 25px;
+            font-weight: bolder;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .home a:hover {
+            background: oldlace;
+            transform: scale(1.05);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+    <h1 class="sub-title">User Interface</h1>
+    <div class="main-box">
+        <div class="list-items">
+            <form id="UserLoginForm">
+                <h2 class="title">User ID</h2>
+                <div class="mb-3">
+                    <input class="form-control form-control-lg" type="text" id="UserId" aria-label=".form-control-lg example" required>
+                </div>
+                <h2 class="title">Password</h2>
+                <div class="mb-3">
+                  <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="button">Login</button>
+            </form>
+            <div class="sign_up">
+                <a href="user-sign-up.html">Sign Up</a>
+            </div>
+            <div class="home">
+                <a href="home.html">Home</a>
+            </div>
+        </div>
+    </div> 
+
+    <script>
+        document.getElementById("UserLoginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+    
+            const userId = document.getElementById("UserId").value;
+            const password = document.getElementById("password").value;
+    
+            // Retrieve user data from localStorage
+            const userData = localStorage.getItem(`user_${userId}`);
+    
+            if (!userData) {
+                alert("User not found. Please sign up first.");
+                return;
+            }
+    
+            const user = JSON.parse(userData);
+    
+            if (user.password === password) {
+                alert("Login successful!");
+                // Redirect to search-bus.html
+                window.location.href = "search-bus.html";
+            } else {
+                alert("Incorrect password.");
+            }
+        });
+    </script>
+    
+</body>
+</html>

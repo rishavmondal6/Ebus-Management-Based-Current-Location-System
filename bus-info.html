@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post Bus Info</title>
+  <style>
+    
+    body {
+        width: 99vw;
+        height: 97vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgba(0,0,0,0.1), rgba(194, 53, 9, 0.747));
+        background-size: cover;
+        background-position: center;
+    }
+
+    .sub-title {
+        text-align: center;
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        border-radius: 10px;
+        font-size: 26px;
+        width: fit-content; 
+        position: relative;
+        margin-bottom: 4px;
+        margin-top: -8px;
+    }
+
+    .main-box {
+        background-color: azure;
+        padding: 30px 120px;
+        margin-left: -6px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .list-items .mb-3 {
+        color: whitesmoke;
+        font-size: 20px;
+        font-weight: bold;
+        width: 330px;
+        height: 33px;
+        margin-top: -15px;
+        background: rgba(241, 52, 4, 0.925);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .list-items .mb-3:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.03);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .title i{
+        font-size: 22px;
+    }
+
+    .form-control {
+        width: 320px;
+        height: 25px;
+    }
+
+    .button {
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        font-size: 18px;
+        font-weight: bolder;
+        margin-top: 5px;
+        margin-left: 83px;
+        width: 150px;
+        height: 29px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.05);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #exampleInput {
+        font-size: 70%;
+    }
+    
+    .logout {
+        position: absolute;
+        bottom: 15px;
+        left: 49.5%;
+        transform: translateX(-50%);
+    }
+
+    .logout a {
+        color: red;
+        font-size: 20px;
+        font-weight: bolder;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+     
+    .logout a:hover {
+        transform: scale(1.05);
+        box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .option_mb-3{
+        color: azure;
+        background: red;
+        font-size: 18px;
+        font-weight: bold;
+        width: 330px;
+        height: 33px;
+    }
+
+  </style>
+</head>
+<body>
+  <h1 class="sub-title">Post Bus Information</h1>
+  <div class="main-box">
+    <div class="list-items">
+        <form id="driverForm">
+            <h2 class="title"><i>Source:</i></h2>
+            <div class="mb-3">
+                <select class="option_mb-3" aria-label="Large select example">
+                    <option selected>Please select your source</option>
+                    <option value="Garden Reach">Garden Reach</option>
+                    <option value="Esplanade">Esplanade</option>
+                  </select>
+            </div>
+            <h2 class="title"><i>Destination:</i></h2>
+            <div class="mb-3">
+                <select class="option_mb-3" aria-label="Large select example">
+                    <option selected>Please select your destination</option>
+                    <option value="Behala">Behala</option>
+                    <option value="Red Road">Red Road</option>
+                    <option value="High Court">High Court</option>
+                    <option value="Eden Gardens">Eden Gardens</option>
+                  </select>
+            </div>
+            <h2 class="title"><i>Day:</i></h2>
+            <div class="mb-3">
+                <select class="option_mb-3" aria-label="Large select example">
+                    <option selected>Please select day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                  </select>
+            </div>
+            <h2 class="title"><i>Timing:</i></h2>
+            <div class="mb-3">
+                <input type="time" class="form-control" id="timing" placeholder="Timing" required>
+                <label for="timing"></label>
+              </div>  
+            <h2 class="title"><i>Bus Type:</i></h2>
+            <div class="mb-3">
+                <select class="option_mb-3" aria-label="Large select example">
+                    <option selected>Please select bus type</option>
+                    <option value="WBTC Bus">WBTC Bus</option>
+                    <option value="SBSTC Bus">SBSTC Bus</option>
+                  </select>
+            </div>
+            <h2 class="title"><i>Contact:</i></h2>
+            <div class="mb-3">
+                <input class="form-control" type="text" aria-label=".form-control-lg example">
+            </div>            
+            <button type="submit" class="button">Add Details</button>
+        </form>
+        <div class="logout">
+            <a href="home.html">Log Out</a>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('driverForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const form = event.target;
+        const source = form.querySelectorAll('select')[0].value;
+        const destination = form.querySelectorAll('select')[1].value;
+        const day = form.querySelectorAll('select')[2].value;
+        const timing = form.querySelector('#timing').value;
+        const busType = form.querySelectorAll('select')[3].value;
+        const contact = form.querySelectorAll('input')[1].value;
+    
+        if (!source || !destination || !day || !timing || !busType || !contact) {
+            alert("Please fill all fields.");
+            return;
+        }
+    
+        const busInfo = {
+            source,
+            destination,
+            day,
+            timing,
+            busType,
+            contact
+        };
+    
+        const existingData = JSON.parse(localStorage.getItem('busData')) || [];
+        existingData.push(busInfo);
+        localStorage.setItem('busData', JSON.stringify(existingData));
+    
+        alert('Bus Info Added!');
+        form.reset();
+    });
+    </script>
+    
+</body>
+</html>

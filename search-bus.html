@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Bus</title>
+  <style>
+    
+    body {
+        width: 99vw;
+        height: 97vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgba(0,0,0,0.1), rgba(194, 53, 9, 0.747));
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .sub-title {
+        text-align: center;
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        border-radius: 10px;
+        font-size: 50px;
+        width: fit-content; 
+        position: relative;
+        margin-bottom: 20px;
+        margin-top: -8px;
+    }
+
+    .main-box {
+        background-color: azure;
+        padding: 55px 120px;
+        margin-left: -6px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .list-items .mb-3 {
+        color: whitesmoke;
+        font-size: 20px;
+        font-weight: bold;
+        width: 330px;
+        height: 33px;
+        margin-top: -15px;
+        background: rgba(241, 52, 4, 0.925);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .list-items .mb-3:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.03);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .title i{
+        font-size: 29px;
+    }
+
+    .form-control {
+        width: 320px;
+        height: 25px;
+    }
+
+    .button {
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        font-size: 22px;
+        font-weight: bolder;
+        margin-top: 18px;
+        margin-left: 90px;
+        width: 150px;
+        height: 32px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.05);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #exampleInput {
+        font-size: 70%;
+    }
+    
+    .logout {
+        position: relative;
+        bottom: -15px;
+        left: 88.1%;
+        transform: translateX(-50%);
+    }
+
+    .logout a {
+        color: red;
+        font-size: 20px;
+        font-weight: bolder;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+     
+    .logout a:hover {
+        transform: scale(1.05);
+        box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .option_mb-3{
+        color: azure;
+        background: red;
+        font-size: 20px;
+        font-weight: bold;
+        width: 330px;
+        height: 33px;
+    }
+
+  </style>
+</head>
+<body>
+  <h1 class="sub-title">Search Bus</h1>
+  <div class="main-box">
+    <div class="list-items">
+        <form id="driverForm">
+            <h2 class="title"><i>Source:</i></h2>
+            <div class="mb-3">
+                <select class="option_mb-3" aria-label="Large select example">
+                    <option selected>Please select your source</option>
+                    <option value="Garden Reach">Garden Reach</option>
+                    <option value="Esplanade">Esplanade</option>
+                  </select>
+            </div>
+            <h2 class="title"><i>Destination:</i></h2>
+            <div class="mb-3">
+                <select class="option_mb-3" aria-label="Large select example">
+                    <option selected>Please select your destination</option>
+                    <option value="Behala">Behala</option>
+                    <option value="Red Road">Red Road</option>
+                    <option value="High Court">High Court</option>
+                    <option value="Eden Gardens">Eden Gardens</option>
+                  </select>
+            </div>
+            <button type="submit" class="button">Search</button>
+        </form>
+        <div class="logout">
+            <a href="user.html">Log Out</a>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('driverForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const form = event.target;
+        const source = form.querySelectorAll('select')[0].value;
+        const destination = form.querySelectorAll('select')[1].value;
+    
+        const allBusData = JSON.parse(localStorage.getItem('busData')) || [];
+    
+        const result = allBusData.filter(bus =>
+            bus.source === source && bus.destination === destination
+        );
+    
+        const displayBox = document.createElement('div');
+        displayBox.style.marginTop = "20px";
+        displayBox.style.padding = "10px";
+        displayBox.style.background = "white";
+        displayBox.style.borderRadius = "8px";
+        displayBox.style.boxShadow = "0px 2px 10px rgba(0,0,0,0.2)";
+    
+        if (result.length === 0) {
+            displayBox.innerHTML = "<strong>No bus found for this route.</strong>";
+        } else {
+            displayBox.innerHTML = result.map(bus => `
+                <p><strong>Day:</strong> ${bus.day}</p>
+                <p><strong>Timing:</strong> ${bus.timing}</p>
+                <p><strong>Type:</strong> ${bus.busType}</p>
+                <p><strong>Contact:</strong> ${bus.contact}</p>
+                <hr/>
+            `).join('');
+        }
+    
+        // Remove previous result if any
+        const oldBox = document.querySelector('.result-box');
+        if (oldBox) oldBox.remove();
+    
+        displayBox.classList.add('result-box');
+        document.body.appendChild(displayBox);
+    });
+    </script>    
+
+</body>
+</html>

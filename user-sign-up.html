@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Sign Up</title>
+  <style>
+    
+    body {
+        width: 99vw;
+        height: 97vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgba(0,0,0,0.1), rgba(194, 53, 9, 0.747));
+        background-size: cover;
+        background-position: center;
+    }
+
+    .sub-title {
+        text-align: center;
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        border-radius: 10px;
+        font-size: 32px;
+        width: fit-content; 
+        position: relative;
+        margin-bottom: 8px;
+        margin-top: 2px;
+    }
+
+    .main-box {
+        background-color: azure;
+        padding: 50px 120px;
+        margin-left: -6px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .list-items .mb-3 {
+        color: whitesmoke;
+        font-size: 20px;
+        font-weight: bold;
+        width: 330px;
+        height: 33px;
+        margin-top: -15px;
+        background: rgba(241, 52, 4, 0.925);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .list-items .mb-3:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.03);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .title i{
+        font-size: 22px;
+    }
+
+    .form-control {
+        width: 320px;
+        height: 25px;
+    }
+
+    .button {
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        font-size: 18px;
+        font-weight: bolder;
+        margin-top: 15px;
+        margin-left: 86px;
+        width: 150px;
+        height: 29px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.05);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #exampleInput {
+        font-size: 70%;
+    }
+
+  </style>
+</head>
+<body>
+  <h1 class="sub-title">User Sign Up</h1>
+  <div class="main-box">
+    <div class="list-items">
+        <form id="driverForm">
+            <h2 class="title"><i>Full Name:</i></h2>
+            <div class="mb-3">
+                <input class="form-control" type="text" aria-label=".form-control-lg example">
+            </div> 
+            <h2 class="title"><i>Email:</i></h2>
+            <div class="mb-3">
+                <input class="form-control" type="text" aria-label=".form-control-lg example">
+            </div> 
+            <h2 class="title"><i>Mobile No:</i></h2>
+            <div class="mb-3">
+                <input class="form-control" type="text" aria-label=".form-control-lg example">
+            </div> 
+            <h2 class="title"><i>User ID:</i></h2>
+            <div class="mb-3">
+                <input class="form-control" type="text" aria-label=".form-control-lg example">
+            </div>   
+            <h2 class="title"><i>Create Password:</i></h2>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="password" required>
+            </div>             
+            <button type="submit" class="button">Sign Up</button>
+        </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("driverForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const inputs = document.querySelectorAll("#driverForm input");
+      const fullName = inputs[0].value;
+      const email = inputs[1].value;
+      const mobile = inputs[2].value;
+      const userId = inputs[3].value;
+      const password = inputs[4].value;
+  
+      // Basic validation
+      if (!fullName || !email || !mobile || !userId || !password) {
+        alert("Please fill in all fields!");
+        return;
+      }
+  
+      // Save to localStorage
+      const user = {
+        fullName,
+        email,
+        mobile,
+        userId,
+        password
+      };
+  
+      // Store user using userId as key
+      localStorage.setItem(`user_${userId}`, JSON.stringify(user));
+      alert("Sign up successful! Now you can log in.");
+      window.location.href = "user.html"; // redirect to login
+    });
+  </script>
+  
+</body>
+</html>

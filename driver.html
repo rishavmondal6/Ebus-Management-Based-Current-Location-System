@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driver Login</title>
+  <style>
+    /* Your existing CSS goes here */
+    body {
+        width: 99vw;
+        height: 97vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgba(0,0,0,0.1), rgba(194, 53, 9, 0.747));
+        background-size: cover;
+        background-position: center;
+    }
+
+    .sub-title {
+        text-align: center;
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        border-radius: 10px;
+        font-size: 40px;
+        width: fit-content;
+        padding-bottom: 5px;
+        position: relative;
+        margin-bottom: 50px;
+    }
+
+    .main-box {
+        background-color: azure;
+        padding: 100px 140px;
+        margin-left: -6px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .list-items .mb-3 {
+        color: whitesmoke;
+        font-size: 30px;
+        font-weight: bold;
+        width: 550px;
+        height: 50px;
+        background: rgba(241, 52, 4, 0.925);
+        margin-top: 10px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .list-items .mb-3:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.03);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-control {
+        width: 330px;
+        height: 40px;
+        margin-left: 12%;
+    }
+
+    .button {
+        color: whitesmoke;
+        background: rgba(241, 52, 4, 0.925);
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 20px;
+        width: 110px;
+        height: 50px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+        background: rgba(200, 40, 4, 0.925);
+        transform: scale(1.05);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #exampleInput {
+        font-size: 75%;
+    }
+  </style> 
+</head>
+<body>
+  <h1 class="sub-title">Driver Login</h1>
+  <div class="main-box">
+    <div class="list-items">
+      <form id="loginForm">
+        <div class="mb-3">
+          <label for="loginID" class="form-label">Login ID</label>
+          <input type="text" class="form-control" id="loginID" required />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" required />
+        </div>
+        <button type="submit" class="button">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+  
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+  
+        const loginID = document.getElementById('loginID').value.trim();
+        const password = document.getElementById('password').value.trim();
+  
+        let drivers = JSON.parse(localStorage.getItem("drivers")) || [];
+  
+        const validDriver = drivers.find(driver => driver.driverId === loginID && driver.password === password);
+  
+        if (validDriver) {
+            alert("Login successful!");
+            
+            // Save current login to localStorage to be used in bus-info.html
+            localStorage.setItem("loggedInDriver", JSON.stringify(validDriver));
+            
+            // Redirect to bus-info.html
+            window.location.href = "bus-info.html";
+        } else {
+            alert("Invalid credentials. Please try again.");
+        }
+    });
+  </script>
+  
+
+</body>
+</html>
