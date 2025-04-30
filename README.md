@@ -32,14 +32,5 @@ Rishav Mondal
 
 📧 Email: [mondalrishav80@gmail.com]
 
-📂 Folder Structure (if open-source or hosted on GitHub)
-markdown
-Copy
-Edit
-├── index.html
-├── style.css
-├── script.js
-└── assets/
-    └── images/
 📜 License
 This project is for educational/demo purposes. Reach out for collaboration or usage permissions.
